@@ -37,6 +37,12 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+val appThemeColor = darkColorScheme(
+    primary = Purple40,
+    secondary = Purple80,
+    tertiary = Pink80
+)
+
 @Composable
 fun TodoAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -57,7 +63,7 @@ fun TodoAppTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = appThemeColor.primary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
@@ -66,5 +72,32 @@ fun TodoAppTheme(
         colorScheme = colorScheme,
         typography = Typography,
         content = content
+    )
+}
+
+
+@Composable
+fun AppDrawerExampleTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val colorScheme = when {
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        val currentWindow = (view.context as? Activity)?.window
+            ?: throw Exception("Not in an activity - unable to get Window reference")
+
+        SideEffect {
+            (view.context as Activity).window.statusBarColor = colorScheme.background.toArgb()
+            (view.context as Activity).window.navigationBarColor = colorScheme.background.toArgb()
+            WindowCompat.getInsetsController(currentWindow, view).isAppearanceLightStatusBars = false
+        }
+    }
+
+    MaterialTheme(
+        colorScheme = colorScheme, typography = Typography, content = content
     )
 }
