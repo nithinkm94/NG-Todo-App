@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
@@ -32,12 +34,11 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.nkmgb.todoapp.R
 import com.nkmgb.todoapp.ui.theme.appThemeColor
 
 
-var empName : String = ""
+var empName: String = ""
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
@@ -46,34 +47,39 @@ fun AddTodoScreen(navController: NavHostController) {
     var isEdited by remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { TopAppBar(
-            title = { Text(stringResource(R.string.app_name)) },
-            colors = TopAppBarDefaults.mediumTopAppBarColors(
-                containerColor = appThemeColor.primary,
-                titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                actionIconContentColor = MaterialTheme.colorScheme.onSecondary
-            ),
-            navigationIcon = {
-                IconButton(onClick = {navController.navigateUp()}) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "Navigation icon"
-                    )
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.app_name)) },
+                colors = TopAppBarDefaults.mediumTopAppBarColors(
+                    containerColor = appThemeColor.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onSecondary
+                ),
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Navigation icon"
+                        )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(
+                            Icons.Filled.Delete,
+                            contentDescription = "Delete"
+                        )
+                    }
                 }
-            },
-            actions = {
-                IconButton(onClick = {navController.navigateUp()}) {
-                    Icon(
-                        Icons.Filled.Delete,
-                        contentDescription = "Delete"
-                    )
-                }
-            }
-        ) }
+            )
+        }
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(it),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(it)
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -83,6 +89,49 @@ fun AddTodoScreen(navController: NavHostController) {
             EditTextField("Description")
 
             EditTextField("Info")
+
+            EditTextField("Task")
+
+            EditTextField("Description")
+
+            EditTextField("Info")
+
+            EditTextField("Task")
+
+            EditTextField("Description")
+
+            EditTextField("Info")
+
+            var selectedIndex by remember { mutableStateOf(-1) }
+            LargeDropdownMenu(
+                label = "Label",
+                items = listOf("Item 1", "Item 2", "Item 3"),
+                selectedIndex = selectedIndex,
+                onItemSelected = { index, _ -> selectedIndex = index },
+                modifier = Modifier
+                    .padding(all = 10.dp)
+                    .fillMaxWidth()
+            )
+
+            LargeDropdownMenu(
+                label = "Priority",
+                items = listOf("Item 1", "Item 2", "Item 3"),
+                selectedIndex = selectedIndex,
+                onItemSelected = { index, _ -> selectedIndex = index },
+                modifier = Modifier
+                    .padding(all = 10.dp)
+                    .fillMaxWidth()
+            )
+
+            LargeDropdownMenu(
+                label = "Category",
+                items = listOf("Item 1", "Item 2", "Item 3"),
+                selectedIndex = selectedIndex,
+                onItemSelected = { index, _ -> selectedIndex = index },
+                modifier = Modifier
+                    .padding(all = 10.dp)
+                    .fillMaxWidth()
+            )
 
 
             CustomTextField(

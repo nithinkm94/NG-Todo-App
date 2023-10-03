@@ -1,4 +1,4 @@
-package com.nkmgb.todoapp.ui.views
+package com.nkmgb.todoapp.ui.navigation
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
@@ -14,6 +14,9 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
+import com.nkmgb.todoapp.ui.views.AddTodoScreen
+import com.nkmgb.todoapp.ui.views.HomeScreen
+import com.nkmgb.todoapp.ui.views.TodoListHomePage
 import com.nkmgb.todoapp.utils.AppScreens
 import com.nkmgb.todoapp.viewmodel.MainActivityViewModel
 
@@ -26,33 +29,6 @@ fun AppRouter(
     addButtonClicked: () -> Unit
 ) {
     AnimatedNavHost(navController, startDestination = AppScreens.HomeScreen.route) {
-//        composable(route = AppScreens.AddTodoScreen.route + "/{empId}/{isEdit}",
-//            arguments = listOf(
-//                navArgument("empId") {
-//                    type = NavType.StringType
-//                    defaultValue = ""
-//                },
-//                navArgument("isEdit") {
-//                    type = NavType.BoolType
-//                    defaultValue = false
-//                }
-//            ), enterTransition = {
-//                // Let's make for a really long fade in
-//                slideInVertically(
-//                    initialOffsetY = { 1800 }
-//                )
-//            }, popExitTransition = {
-//                slideOutVertically(
-//                    targetOffsetY = { 1800 }
-//                )
-//            }
-//        ) {
-//            val isEdit = it.arguments?.getBoolean("isEdit")
-//            val empId = it.arguments?.getString("empId")
-//            AddTodoScreen()
-////            todoListHomePage(mainActivityViewModel, openDrawer, addButtonClicked)
-////            AddEditEmployeeScreen(navController, homeViewModel, empId, isEdit!!)
-//        }
         composable(route = AppScreens.EmployeeDetailScreen.route + "/{empId}",
             arguments = listOf(
                 navArgument("empId") {
@@ -62,10 +38,10 @@ fun AppRouter(
                 }
             )) {
             val empId = it.arguments?.getString("empId")
-            todoListHomePage(mainActivityViewModel, openDrawer, addButtonClicked)
+            TodoListHomePage(mainActivityViewModel, openDrawer, addButtonClicked)
         }
         composable(route = AppScreens.HomeScreen.route) {
-            todoListHomePage(mainActivityViewModel, openDrawer, addButtonClicked)
+            TodoListHomePage(mainActivityViewModel, openDrawer, addButtonClicked)
         }
         composable(route = AppScreens.TodoList.route) {
             HomeScreen(openDrawer)
