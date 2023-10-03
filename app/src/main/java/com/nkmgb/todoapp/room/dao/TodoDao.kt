@@ -1,19 +1,28 @@
 package com.nkmgb.todoapp.room.dao
 
-import android.os.Parcelable
-import androidx.annotation.NonNull
-import androidx.room.ColumnInfo
 import androidx.room.Dao
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.nkmgb.todoapp.room.database.TodoList
-import kotlinx.parcelize.Parcelize
+import androidx.room.Update
+import com.nkmgb.todoapp.room.database.TodoItem
 
 @Dao
 interface TodoDao {
-
     @Query("SELECT * FROM todolist")
-    fun getTodoList(): List<TodoList>
+    fun getTodoList(): List<TodoItem>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addTodo(todoItem: TodoItem)
+
+    @Query("SELECT * FROM todolist WHERE id = :id")
+    fun findEmployeeById(id: Int): TodoItem
+
+    @Update
+    suspend fun updateTodo(todoItem: TodoItem)
+
+    @Delete
+    suspend fun deleteTodoItem(todoItem: TodoItem)
 
 }
