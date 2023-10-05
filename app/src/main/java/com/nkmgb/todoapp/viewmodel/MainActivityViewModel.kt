@@ -8,9 +8,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor(private val todoRepository: TodoRepository) :
+class MainActivityViewModel @Inject constructor(todoRepository: TodoRepository) :
     ViewModel() {
-    fun getButtonString(): String = "Test String"
+    fun getButtonString(): String = "Add Todo"
 
     val todoList: LiveData<List<TodoItem>> = todoRepository.todoList
 

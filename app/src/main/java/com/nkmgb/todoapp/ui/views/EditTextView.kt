@@ -1,4 +1,6 @@
 import androidx.annotation.StringRes
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,28 +22,49 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.nkmgb.todoapp.ui.models.EditTextModel
 import com.nkmgb.todoapp.ui.theme.defaultEditTextStyle
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EditTextField(label: String, hint: String = "", maxLines: Int = 1) {
-
+fun EditTextField(
+    editTextModel: EditTextModel
+) {
     var text by rememberSaveable { mutableStateOf("") }
 
-    OutlinedTextField(
-        value = text,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(6.dp),
-        onValueChange = {
-            text = it
-        },
-        maxLines = maxLines,
-        label = { Text(label) },
-        textStyle = defaultEditTextStyle,
-        colors = TextFieldDefaults.textFieldColors(
-            containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.3f)
-        )
-    )
+    val interactionSource = remember { MutableInteractionSource() }
+    val isFocused by interactionSource.collectIsFocusedAsState()
+
+    with(editTextModel) {
+        Column {
+            OutlinedTextField(
+                value = value,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(6.dp),
+                onValueChange = {
+                    text = it
+                    onTextChanged(it)
+                },
+                singleLine = singleLine,
+                maxLines = maxLines,
+                label = { Text(label) },
+                textStyle = defaultEditTextStyle,
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.3f)
+                ),
+                interactionSource = interactionSource,
+                isError = isFocused && error != null
+            )
+            /*error?.forEach {
+                Text(
+                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 8.dp),
+                    text = it,
+                    color = Color.Red
+                )
+            }*/
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
