@@ -44,7 +44,7 @@ fun AppRouter(
             TodoListHomePage(mainActivityViewModel, openDrawer, addButtonClicked)
         }
         composable(route = AppScreens.TodoList.route) {
-            HomeScreen(openDrawer)
+            HomeScreen(openDrawer, addButtonClicked)
         }
         composable(route = AppScreens.Settings.route) {
             AddTodoScreen(navController)

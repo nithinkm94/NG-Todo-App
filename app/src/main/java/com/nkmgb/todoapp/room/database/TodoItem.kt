@@ -1,7 +1,6 @@
 package com.nkmgb.todoapp.room.database
 
 import android.os.Parcelable
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -10,16 +9,21 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "TodoList")
 data class TodoItem(
-    @PrimaryKey(autoGenerate = false)
-    @NonNull
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var id: Int,
+    var id: Int = 0,
 
-    @ColumnInfo(name = "todoTitle")
-    var todoTitle: String,
+    @ColumnInfo(name = "title")
+    var title: String,
 
-    @ColumnInfo(name = "todoDescription")
-    var todoDescription: String,
+    @ColumnInfo(name = "description")
+    var description: String,
+
+    @ColumnInfo(name = "label")
+    var label: String,
+
+    @ColumnInfo(name = "priority")
+    var priority: String,
 
     @ColumnInfo(name = "hasNoDueDate")
     var hasNoDueDate: Boolean,

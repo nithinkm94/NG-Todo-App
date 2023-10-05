@@ -68,9 +68,10 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
     // hilt
-    def hilt_version = "2.42"
+    def hilt_version = "2.44"
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // Room

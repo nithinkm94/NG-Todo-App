@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,37 +24,44 @@ import com.nkmgb.todoapp.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    openDrawer: () -> Unit
+    openDrawer: () -> Unit,
+    addButtonClicked: () -> Unit
 ) {
     Scaffold(
-        topBar = { TopAppBar(
-            title = { Text(stringResource(R.string.app_name)) },
-            colors = TopAppBarDefaults.mediumTopAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-                titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                actionIconContentColor = MaterialTheme.colorScheme.onSecondary
-            ),
-            navigationIcon = {
-                IconButton(onClick = {openDrawer.invoke()}) {
-                    Icon(
-                        imageVector = Icons.Filled.Menu,
-                        contentDescription = "Navigation icon"
-                    )
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.app_name)) },
+                colors = TopAppBarDefaults.mediumTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onSecondary
+                ),
+                navigationIcon = {
+                    IconButton(onClick = { openDrawer.invoke() }) {
+                        Icon(
+                            imageVector = Icons.Filled.Menu,
+                            contentDescription = "Navigation icon"
+                        )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = {
+                        addButtonClicked.invoke()
+                    }) {
+                        Icon(
+                            Icons.Filled.AddCircle,
+                            contentDescription = "Add New"
+                        )
+                    }
                 }
-            },
-            actions = {
-                IconButton(onClick = {}) {
-                    Icon(
-                        Icons.Filled.AddCircle,
-                        contentDescription = "Add New"
-                    )
-                }
-            }
-        ) }
+            )
+        }
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(it),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(it),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

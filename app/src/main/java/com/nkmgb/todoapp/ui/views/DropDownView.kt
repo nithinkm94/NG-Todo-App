@@ -1,6 +1,5 @@
 package com.nkmgb.todoapp.ui.views
 
-import EditTextField
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -59,6 +58,8 @@ fun <T> LargeDropdownMenu(
 ) {
     var mExpanded by remember { mutableStateOf(false) }
 
+    var selectedItemIndex by remember { mutableStateOf(selectedIndex) }
+
     val icon = if (mExpanded)
         Icons.Filled.KeyboardArrowUp
     else
@@ -70,7 +71,7 @@ fun <T> LargeDropdownMenu(
     ) {
         OutlinedTextField(
             label = { Text(label) },
-            value = items.getOrNull(selectedIndex)?.let { selectedItemToString(it) } ?: "",
+            value = items.getOrNull(selectedItemIndex)?.let { selectedItemToString(it) } ?: "",
             enabled = enabled,
             modifier = Modifier.fillMaxWidth(),
             trailingIcon = {
@@ -105,9 +106,9 @@ fun <T> LargeDropdownMenu(
                     .padding(10.dp)
             ) {
                 val listState = rememberLazyListState()
-                if (selectedIndex > -1) {
+                if (selectedItemIndex > -1) {
                     LaunchedEffect("ScrollToSelected") {
-                        listState.scrollToItem(index = selectedIndex)
+                        listState.scrollToItem(index = selectedItemIndex)
                     }
                 }
 
@@ -128,13 +129,14 @@ fun <T> LargeDropdownMenu(
                         }
                     }
                     itemsIndexed(items) { index, item ->
-                        val selectedItem = index == selectedIndex
+                        val selectedItem = index == selectedItemIndex
                         drawItem(
                             item,
                             selectedItem,
                             true
                         ) {
                             onItemSelected(index, item)
+                            selectedItemIndex = index
                             mExpanded = false
                         }
 
