@@ -28,6 +28,42 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            debuggable true
+        }
+
+        staging {
+            initWith debug
+            manifestPlaceholders = [hostName: "todo.app.com"]
+            applicationIdSuffix ".staging"
+        }
+
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "todoapp-${variant.versionName}(${variant.versionCode})-${variant.buildType.name}.apk"
+            }
+        }
+    }
+    flavorDimensions += "version"
+    productFlavors {
+        demo {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension "version"
+            applicationIdSuffix ".demo" // This is included in the package name
+            versionNameSuffix "-demo"
+            // This is included in the apps version name shown in the app info (settings)
+        }
+        full {
+            dimension "version"
+            applicationIdSuffix ".full"
+            versionNameSuffix "-full"
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
