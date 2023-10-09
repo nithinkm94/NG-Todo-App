@@ -49,6 +49,14 @@ val defaultEditTextStyle = TextStyle(
     fontSize = 16.sp,
     lineHeight = 24.sp,
     letterSpacing = 0.5.sp,
-    color = Color.Black,
-    background = Color.White
+    color = Color.Black
+)
+
+val text16 = TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.Normal,
+    fontSize = 16.sp,
+    lineHeight = 24.sp,
+    letterSpacing = 0.5.sp,
+    color = Color.Black
 )

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.nkmgb.todoapp.room.TodoDatabase
 import com.nkmgb.todoapp.room.dao.TodoDao
+import com.nkmgb.todoapp.room.dao.TodoLabelDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +17,13 @@ import javax.inject.Singleton
 private object DatabaseModule {
 
     @Provides
-    fun provideEmployeeDao(appDatabase: TodoDatabase): TodoDao {
+    fun provideTodoDao(appDatabase: TodoDatabase): TodoDao {
         return appDatabase.todoDao()
+    }
+
+    @Provides
+    fun provideTodoLabelDao(appDatabase: TodoDatabase): TodoLabelDao {
+        return appDatabase.todoLabelDao()
     }
 
     @Provides

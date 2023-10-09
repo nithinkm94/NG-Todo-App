@@ -1,4 +1,4 @@
-package com.nkmgb.todoapp.ui.views
+package com.nkmgb.todoapp.ui.views.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

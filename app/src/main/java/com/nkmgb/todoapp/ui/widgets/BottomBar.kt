@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.nkmgb.todoapp.ui.models.ButtonModel
+import com.nkmgb.todoapp.ui.widgets.models.ButtonModel
 
 @Composable
 fun BottomBar(label: String, addButtonClicked: () -> Unit) {
@@ -16,7 +16,8 @@ fun BottomBar(label: String, addButtonClicked: () -> Unit) {
         ButtonWithOutline(
             buttonModel = ButtonModel(
                 label = label,
-                onClick = addButtonClicked
+                onClick = addButtonClicked,
+                width = 0.5f
             )
         )
     }

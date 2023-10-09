@@ -14,9 +14,9 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-import com.nkmgb.todoapp.ui.views.AddTodoScreen
-import com.nkmgb.todoapp.ui.views.HomeScreen
-import com.nkmgb.todoapp.ui.views.TodoListHomePage
+import com.nkmgb.todoapp.ui.views.todoadd.AddTodoScreen
+import com.nkmgb.todoapp.ui.views.home.HomeScreen
+import com.nkmgb.todoapp.ui.views.todoadd.TodoListHomePage
 import com.nkmgb.todoapp.utils.AppScreens
 import com.nkmgb.todoapp.viewmodel.MainActivityViewModel
 

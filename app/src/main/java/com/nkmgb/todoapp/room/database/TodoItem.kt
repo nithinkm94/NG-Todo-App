@@ -20,22 +20,28 @@ data class TodoItem(
     var description: String,
 
     @ColumnInfo(name = "label")
-    var label: String,
+    var label: Int,
 
     @ColumnInfo(name = "priority")
-    var priority: String,
+    var priority: Int,
 
     @ColumnInfo(name = "hasNoDueDate")
     var hasNoDueDate: Boolean,
 
-    @ColumnInfo(name = "createdDate")
-    var createdDate: Long,
-
     @ColumnInfo(name = "dueDate")
-    var dueDate: Long,
+    var dueDate: String,
 
-    @ColumnInfo(name = "completedDate")
-    var completedDate: Long,
+    @ColumnInfo(name = "dueTime")
+    var dueTime: String? = null,
+
+    @ColumnInfo(name = "completedAt")
+    var completedAt: Long? = null,
+
+    @ColumnInfo(name = "createdAt")
+    var createdAt: Long,
+
+    @ColumnInfo(name = "updatedAt")
+    var updatedAt: Long,
 
     // labels
 

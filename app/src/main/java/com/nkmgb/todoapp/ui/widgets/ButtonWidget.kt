@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.nkmgb.todoapp.R
-import com.nkmgb.todoapp.ui.models.ButtonModel
+import com.nkmgb.todoapp.ui.widgets.models.ButtonModel
 
 @Composable
 fun ButtonWithOutline(
@@ -30,7 +30,7 @@ fun ButtonWithOutline(
                 disabledContentColor = Color.White
             ),
             modifier = Modifier
-                .fillMaxWidth(0.5F)
+                .fillMaxWidth(width)
                 .padding(10.dp)
         ) {
             Text(text = label)
@@ -52,9 +52,7 @@ fun ButtonFilled(
                 disabledContainerColor = Color.Gray,
                 disabledContentColor = Color.Black
             ),
-            modifier = Modifier
-                .fillMaxWidth(0.5F)
-                .padding(10.dp)
+            modifier = modifier
         ) {
             Text(text = label)
         }
