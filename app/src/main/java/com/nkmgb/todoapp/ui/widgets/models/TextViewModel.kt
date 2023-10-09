@@ -1,4 +1,4 @@
-package com.nkmgb.todoapp.ui.models
+package com.nkmgb.todoapp.ui.widgets.models
 
 data class TextViewModel(
     val header: String,

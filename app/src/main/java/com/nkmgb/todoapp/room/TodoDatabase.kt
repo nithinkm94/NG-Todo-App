@@ -2,17 +2,17 @@ package com.nkmgb.todoapp.room
 
 import android.content.Context
 import androidx.room.Database
-import androidx.room.DatabaseConfiguration
-import androidx.room.InvalidationTracker
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteOpenHelper
 import com.nkmgb.todoapp.room.dao.TodoDao
+import com.nkmgb.todoapp.room.dao.TodoLabelDao
 import com.nkmgb.todoapp.room.database.TodoItem
+import com.nkmgb.todoapp.room.database.TodoLabel
 
-@Database(entities = [(TodoItem::class)], version = 1, exportSchema = false)
+@Database(entities = [TodoItem::class, TodoLabel::class], version = 1, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
     abstract fun todoDao(): TodoDao
+    abstract fun todoLabelDao(): TodoLabelDao
 
     companion object {
         /*The value of a volatile variable will never be cached, and all writes and reads will be done to and from the main memory.

@@ -22,9 +22,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nkmgb.todoapp.R
-import com.nkmgb.todoapp.ui.models.TextViewModel
 import com.nkmgb.todoapp.ui.theme.TodoAppTheme
 import com.nkmgb.todoapp.ui.theme.defaultEditTextStyle
+import com.nkmgb.todoapp.ui.widgets.models.TextViewModel
 
 @Composable
 fun TextViewWithHeader(model: TextViewModel) {

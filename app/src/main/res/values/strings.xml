@@ -3,4 +3,8 @@
     <string name="drawer_home">Test</string>
     <string name="drawer_settings">Settings</string>
     <string name="drawer_about">About</string>
+
+    <!--    Button-->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

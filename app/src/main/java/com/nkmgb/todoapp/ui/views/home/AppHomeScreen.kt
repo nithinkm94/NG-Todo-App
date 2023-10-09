@@ -1,4 +1,4 @@
-package com.nkmgb.todoapp.ui.views
+package com.nkmgb.todoapp.ui.views.home
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material3.DrawerValue
@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.nkmgb.todoapp.ui.navigation.AppRouter
+import com.nkmgb.todoapp.ui.widgets.Drawer
 import com.nkmgb.todoapp.utils.AppScreens
 import com.nkmgb.todoapp.viewmodel.MainActivityViewModel
 import kotlinx.coroutines.launch

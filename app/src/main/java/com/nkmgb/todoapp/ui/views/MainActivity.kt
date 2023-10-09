@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.nkmgb.todoapp.ui.theme.TodoAppTheme
+import com.nkmgb.todoapp.ui.views.home.AppMainScreen
 import com.nkmgb.todoapp.viewmodel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
