@@ -29,6 +29,7 @@ import com.nkmgb.todoapp.R
 import com.nkmgb.todoapp.ui.content.state.AddTodoScreenState
 import com.nkmgb.todoapp.ui.mappers.Mappers.convertTodoLabelToDropDownItem
 import com.nkmgb.todoapp.ui.mappers.Mappers.convertTodoPrioritiesToDropDownItem
+import com.nkmgb.todoapp.ui.mappers.Mappers.convertTodoStatusToDropDownItem
 import com.nkmgb.todoapp.ui.viewmodel.AddTodoViewModel
 import com.nkmgb.todoapp.ui.views.labels.layout.AddLabelDialog
 import com.nkmgb.todoapp.ui.views.labels.model.DialogModel
@@ -69,6 +70,7 @@ fun TodoContainer(
     val state by viewModel.state.collectAsState(initial = AddTodoScreenState.None)
     val todoLabels by viewModel.todoLabel.collectAsState()
     val priorities = viewModel.todoPriorities
+    val status = viewModel.todoStatus
 
     Box {
         Column(
@@ -172,6 +174,21 @@ fun TodoContainer(
                     )
                 )
             }
+
+            LargeDropdownMenu(
+                DropDownMenuModel(
+                    label = "Status",
+                    items = status.convertTodoStatusToDropDownItem(),
+                    selectedIndex = 0,
+                    onItemSelected = { index ->
+                        viewModel.updateStatus(priorities[index].id)
+                    },
+                    modifier = Modifier
+                        .padding(all = 10.dp)
+                        .fillMaxWidth()
+                )
+            )
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),

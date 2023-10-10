@@ -10,7 +10,7 @@ import com.nkmgb.todoapp.room.database.TodoItem
 
 @Dao
 interface TodoDao {
-    @Query("SELECT * FROM todolist")
+    @Query("SELECT * FROM todolist ORDER BY (dueDate) ASC")
     fun getTodoList(): List<TodoItem>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
