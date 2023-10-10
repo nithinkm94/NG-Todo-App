@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nkmgb.todoapp.localdata.LocalData
 import com.nkmgb.todoapp.localdata.models.Priority
+import com.nkmgb.todoapp.localdata.models.Status
 import com.nkmgb.todoapp.repository.TodoLabelRepository
 import com.nkmgb.todoapp.repository.TodoRepository
 import com.nkmgb.todoapp.room.database.TodoItem
@@ -45,6 +46,9 @@ class AddTodoViewModel @Inject constructor(
     private val _todoPriorities = mutableStateListOf<Priority>()
     val todoPriorities: SnapshotStateList<Priority> = _todoPriorities
 
+    private val _todoStatus = mutableStateListOf<Status>()
+    val todoStatus: SnapshotStateList<Status> = _todoStatus
+
     val state = addTodoScreenReducer.state
 
     init {
@@ -53,6 +57,7 @@ class AddTodoViewModel @Inject constructor(
         }
         getTodoLabels()
         getTodoPriorities()
+        getTodoStatus()
     }
 
     fun updateTask(task: String) {
@@ -87,6 +92,12 @@ class AddTodoViewModel @Inject constructor(
     fun updatePriority(priority: Int) {
         _uiState.value = _uiState.value.copy(
             priority = priority
+        )
+    }
+
+    fun updateStatus(status: Int) {
+        _uiState.value = _uiState.value.copy(
+            status = status
         )
     }
 
@@ -129,6 +140,13 @@ class AddTodoViewModel @Inject constructor(
         }
     }
 
+    private fun getTodoStatus() {
+        viewModelScope.launch {
+            _todoStatus.addAll(LocalData.getStatus)
+        }
+    }
+
+
     fun onSave() {
         viewModelScope.launch(Dispatchers.Main) {
             addTodoScreenReducer.update(AddTodoScreenAction.Load)
@@ -143,6 +161,7 @@ class AddTodoViewModel @Inject constructor(
                         dueDate = date,
                         hasNoDueDate = date.isEmpty(),
                         updatedAt = Date().time,
+                        status = status
                     )
                     todoRepository.addToDo(todo)
                     delay(300)

@@ -2,6 +2,7 @@ package com.nkmgb.todoapp.localdata
 
 import com.nkmgb.todoapp.R
 import com.nkmgb.todoapp.localdata.models.Priority
+import com.nkmgb.todoapp.localdata.models.Status
 
 object LocalData {
     val getPriority = mutableListOf<Priority>().apply {
@@ -17,5 +18,12 @@ object LocalData {
         add(R.color.label_2)
         add(R.color.label_3)
         add(R.color.label_4)
+    }
+
+    val getStatus = mutableListOf<Status>().apply {
+        add(Status(id = 0, name = "Todo", color = R.color.priority_default))
+        add(Status(id = 0, name = "InProgress", color = R.color.priority_low))
+        add(Status(id = 0, name = "Cancelled", color = R.color.priority_medium))
+        add(Status(id = 0, name = "Done", color = R.color.priority_high))
     }
 }

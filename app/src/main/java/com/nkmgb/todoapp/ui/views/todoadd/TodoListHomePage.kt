@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.nkmgb.todoapp.R
 import com.nkmgb.todoapp.ui.theme.appThemeColor
-import com.nkmgb.todoapp.ui.views.todoshow.TodoListContainer
+import com.nkmgb.todoapp.ui.views.todoshow.TodoListStickyContainer
 import com.nkmgb.todoapp.ui.widgets.BottomBar
 import com.nkmgb.todoapp.viewmodel.MainActivityViewModel
 
@@ -62,7 +62,7 @@ fun TodoListHomePage(
             )
         },
         content = {
-            TodoListContainer(it)
+            TodoListStickyContainer(it)
         },
         bottomBar = {
             BottomBar(

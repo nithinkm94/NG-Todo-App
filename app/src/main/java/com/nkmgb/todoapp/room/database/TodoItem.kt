@@ -25,6 +25,9 @@ data class TodoItem(
     @ColumnInfo(name = "priority")
     var priority: Int,
 
+    @ColumnInfo(name = "status")
+    var status: Int,
+
     @ColumnInfo(name = "hasNoDueDate")
     var hasNoDueDate: Boolean,
 
@@ -43,6 +46,9 @@ data class TodoItem(
     @ColumnInfo(name = "updatedAt")
     var updatedAt: Long,
 
+//    @ColumnInfo(name = "date_of_birth")
+//    @TypeConverters(Converters::class)
+//    var dob: Date?
     // labels
 
     //
@@ -54,3 +60,4 @@ data class TodoItem(
 // priority
 
 ) : Parcelable
+

@@ -7,6 +7,7 @@ data class TodoUiState(
     val info: String = "",
     val label: Int = 0,
     val priority: Int = 0,
+    val status: Int = 0,
     val date: String = "",
     val time: String = ""
 )
