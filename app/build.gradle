@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -120,7 +121,8 @@ dependencies {
     // livedata support for room
     implementation "androidx.compose.runtime:runtime-livedata:1.5.3"
     // To use Kotlin annotation process
-    kapt "androidx.room:room-compiler:$room_version"
+//    kapt "androidx.room:room-compiler:$room_version"
+    ksp("androidx.room:room-compiler:2.5.2")
 
     // ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2'
