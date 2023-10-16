@@ -31,12 +31,14 @@ fun DatePickerDialog(mContext: Context, onDateChange: (date: String) -> Unit): D
     val mDatePickerDialog = DatePickerDialog(
         mContext,
         { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-            var date = ""
-            date = if(mDayOfMonth<10){
-                "0$mDayOfMonth"
-            } else "$mDayOfMonth"
-            onDateChange("$mYear/${mMonth + 1}/$date")
+            onDateChange("$mYear/${addLeadingZero(mMonth + 1)}/${mDayOfMonth}")
         }, mYear, mMonth, mDay
     )
     return mDatePickerDialog
+}
+
+fun addLeadingZero(value : Int) : String{
+    return if(value<10){
+        "0$value"
+    } else "$value"
 }
