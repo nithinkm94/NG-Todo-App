@@ -3,6 +3,7 @@ package com.nkmgb.todoapp.repository
 import androidx.lifecycle.MutableLiveData
 import com.nkmgb.todoapp.room.dao.TodoDao
 import com.nkmgb.todoapp.room.database.TodoItem
+import com.nkmgb.todoapp.room.database.jointable.JoinTodoItemTodoLabel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,6 +29,12 @@ class TodoRepository(private val todoDao: TodoDao) {
     suspend fun deleteToDoItem(todoItem: TodoItem) {
         return withContext(Dispatchers.IO) {
             todoDao.deleteTodoItem(todoItem)
+        }
+    }
+
+    suspend fun getTodoListImproved(): List<JoinTodoItemTodoLabel> {
+        return withContext(Dispatchers.IO) {
+            todoDao.getTodoItemLabelListImproved()
         }
     }
 

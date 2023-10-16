@@ -4,6 +4,9 @@ buildscript {
         google()
         mavenCentral()
     }
+    ext {
+        agp_version = '8.1.2'
+    }
 
     ext.hilt_version = '2.44'
     dependencies {

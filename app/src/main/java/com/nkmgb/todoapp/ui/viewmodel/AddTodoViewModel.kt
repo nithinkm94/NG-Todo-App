@@ -40,7 +40,7 @@ class AddTodoViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(TodoUiState())
     val uiState: StateFlow<TodoUiState> = _uiState.asStateFlow()
 
-    private val _todoLabels = MutableStateFlow(listOf<TodoLabel>())
+    private val _todoLabels = MutableStateFlow(emptyList<TodoLabel>())
     val todoLabel: StateFlow<List<TodoLabel>> = _todoLabels.asStateFlow()
 
     private val _todoPriorities = mutableStateListOf<Priority>()

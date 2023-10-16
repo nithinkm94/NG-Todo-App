@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nkmgb.todoapp.R
-import com.nkmgb.todoapp.room.database.TodoItem
+import com.nkmgb.todoapp.room.database.jointable.JoinTodoItemTodoLabel
 import com.nkmgb.todoapp.ui.content.state.TodoScreenState
 import com.nkmgb.todoapp.ui.viewmodel.TodoViewModel
 import com.nkmgb.todoapp.utils.observeLifecycle
@@ -81,8 +81,11 @@ fun TodoListStickyContainer(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun LazyColumnClickableAdvDemo(persons: List<TodoItem>, selectedItem: (TodoItem) -> Unit) {
-    val grouped = persons.groupBy { it.dueDate }
+fun LazyColumnClickableAdvDemo(
+    todoItems: List<JoinTodoItemTodoLabel>,
+    selectedItem: (JoinTodoItemTodoLabel) -> Unit
+) {
+    val grouped = todoItems.groupBy { it.todoItem.dueDate }
 
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         grouped.forEach { (section, todoItems) ->
@@ -130,7 +133,7 @@ fun getSectionTitle(section: String): String {
 }
 
 @Composable
-fun TodoListItem(todoItem: TodoItem, selectedItem: (TodoItem) -> Unit) {
+fun TodoListItem(todoItem: JoinTodoItemTodoLabel, selectedItem: (JoinTodoItemTodoLabel) -> Unit) {
     Card(
         modifier = Modifier
             .padding(8.dp)
@@ -138,6 +141,16 @@ fun TodoListItem(todoItem: TodoItem, selectedItem: (TodoItem) -> Unit) {
             .clickable { selectedItem(todoItem) },
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
+        Text(
+            todoItem.todoLabel.name,
+            fontSize = 20.sp,
+            modifier = Modifier
+                .wrapContentWidth()
+                .wrapContentHeight()
+                .padding(10.dp),
+            textAlign = TextAlign.Start,
+            color = colorResource(id = todoItem.todoLabel.color)
+        )
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
@@ -145,7 +158,7 @@ fun TodoListItem(todoItem: TodoItem, selectedItem: (TodoItem) -> Unit) {
                 .padding(all = 10.dp)
                 .fillMaxHeight()
                 .background(
-                    color = colorResource(id = R.color.purple_transparent),
+                    color = Color.Transparent,
                     shape = RoundedCornerShape(3.dp)
                 )
                 .clickable {
@@ -157,7 +170,7 @@ fun TodoListItem(todoItem: TodoItem, selectedItem: (TodoItem) -> Unit) {
                     .wrapContentWidth()
             ) {
                 Text(
-                    todoItem.title,
+                    todoItem.todoItem.title,
                     fontSize = 20.sp,
                     modifier = Modifier
                         .wrapContentWidth()
@@ -167,7 +180,7 @@ fun TodoListItem(todoItem: TodoItem, selectedItem: (TodoItem) -> Unit) {
                 )
 
                 Text(
-                    todoItem.description,
+                    todoItem.todoItem.description,
                     fontSize = 20.sp,
                     modifier = Modifier
                         .wrapContentWidth()

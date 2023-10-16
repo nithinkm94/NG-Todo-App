@@ -89,7 +89,7 @@ fun TodoListContainer(
                                         .wrapContentWidth()
                                 ) {
                                     Text(
-                                        it.title,
+                                        it.todoItem.title,
                                         fontSize = 20.sp,
                                         modifier = Modifier
                                             .wrapContentWidth()
@@ -99,7 +99,7 @@ fun TodoListContainer(
                                     )
 
                                     Text(
-                                        it.description,
+                                        it.todoItem.description,
                                         fontSize = 20.sp,
                                         modifier = Modifier
                                             .wrapContentWidth()
@@ -110,7 +110,9 @@ fun TodoListContainer(
                                 }
 
                                 IconButton(
-                                    onClick = { todoViewModel.delete(it) },
+                                    onClick = {
+//                                        todoViewModel.delete(it)
+                                    },
                                 ) {
                                     Icon(
                                         painter = painterResource(id = R.drawable.baseline_delete_24),
