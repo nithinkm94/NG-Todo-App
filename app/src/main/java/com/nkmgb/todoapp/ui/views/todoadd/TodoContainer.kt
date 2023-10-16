@@ -110,7 +110,7 @@ fun TodoContainer(
                     items = todoLabels.convertTodoLabelToDropDownItem(),
                     selectedIndex = 0,
                     onItemSelected = { index ->
-                        viewModel.updateLabel(todoLabels[index].id)
+                        viewModel.updateLabel(todoLabels[index])
                         todoLabels.toMutableStateList().removeAt(index)
                     },
                     modifier = Modifier
@@ -135,7 +135,7 @@ fun TodoContainer(
                     items = priorities.convertTodoPrioritiesToDropDownItem(),
                     selectedIndex = 0,
                     onItemSelected = { index ->
-                        viewModel.updatePriority(priorities[index].id)
+                        viewModel.updatePriority(priorities[index])
                     },
                     modifier = Modifier
                         .padding(all = 10.dp)

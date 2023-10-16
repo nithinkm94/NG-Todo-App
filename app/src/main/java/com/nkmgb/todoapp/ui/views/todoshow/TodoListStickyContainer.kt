@@ -91,7 +91,7 @@ fun LazyColumnClickableAdvDemo(persons: List<TodoItem>, selectedItem: (TodoItem)
                     text = getSectionTitle(section),
                     color = Color.White,
                     modifier = Modifier
-                        .background(color = Color.Black)
+                        .background(color = colorResource(id = R.color.purple_200))
                         .padding(8.dp)
                         .fillMaxWidth()
                 )
@@ -133,10 +133,10 @@ fun getSectionTitle(section: String): String {
 fun TodoListItem(todoItem: TodoItem, selectedItem: (TodoItem) -> Unit) {
     Card(
         modifier = Modifier
-            .padding(8.dp)
+            .padding(5.dp)
             .fillMaxWidth()
             .clickable { selectedItem(todoItem) },
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -168,6 +168,16 @@ fun TodoListItem(todoItem: TodoItem, selectedItem: (TodoItem) -> Unit) {
 
                 Text(
                     todoItem.description,
+                    fontSize = 20.sp,
+                    modifier = Modifier
+                        .wrapContentWidth()
+                        .wrapContentHeight()
+                        .padding(10.dp),
+                    textAlign = TextAlign.Start
+                )
+
+                Text(
+                    todoItem.label?.name ?: "Label",
                     fontSize = 20.sp,
                     modifier = Modifier
                         .wrapContentWidth()

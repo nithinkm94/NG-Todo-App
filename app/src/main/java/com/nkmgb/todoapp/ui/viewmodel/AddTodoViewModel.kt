@@ -83,13 +83,13 @@ class AddTodoViewModel @Inject constructor(
         )
     }
 
-    fun updateLabel(label: Int) {
+    fun updateLabel(label: TodoLabel) {
         _uiState.value = _uiState.value.copy(
             label = label
         )
     }
 
-    fun updatePriority(priority: Int) {
+    fun updatePriority(priority: Priority) {
         _uiState.value = _uiState.value.copy(
             priority = priority
         )
@@ -116,6 +116,9 @@ class AddTodoViewModel @Inject constructor(
     fun getTodoLabels() {
         viewModelScope.launch {
             _todoLabels.value = todoLabelRepository.getTodoLabels()
+            if (_todoLabels.value.isNotEmpty()) {
+                updateLabel(_todoLabels.value[0])
+            }
         }
     }
 
@@ -137,6 +140,9 @@ class AddTodoViewModel @Inject constructor(
     private fun getTodoPriorities() {
         viewModelScope.launch {
             _todoPriorities.addAll(LocalData.getPriority)
+            if (_todoPriorities.isNotEmpty()) {
+                updatePriority(_todoPriorities[0])
+            }
         }
     }
 

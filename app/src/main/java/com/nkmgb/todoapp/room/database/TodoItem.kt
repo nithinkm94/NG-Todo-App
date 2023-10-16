@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.nkmgb.todoapp.localdata.models.Priority
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -20,10 +21,10 @@ data class TodoItem(
     var description: String,
 
     @ColumnInfo(name = "label")
-    var label: Int,
+    var label: TodoLabel?,
 
     @ColumnInfo(name = "priority")
-    var priority: Int,
+    var priority: Priority?,
 
     @ColumnInfo(name = "status")
     var status: Int,

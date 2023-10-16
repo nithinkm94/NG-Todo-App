@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.nkmgb.todoapp.room.dao.TodoDao
 import com.nkmgb.todoapp.room.dao.TodoLabelDao
 import com.nkmgb.todoapp.room.database.TodoItem
 import com.nkmgb.todoapp.room.database.TodoLabel
 
 @Database(entities = [TodoItem::class, TodoLabel::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class TodoDatabase : RoomDatabase() {
     abstract fun todoDao(): TodoDao
     abstract fun todoLabelDao(): TodoLabelDao
